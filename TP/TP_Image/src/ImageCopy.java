@@ -140,6 +140,23 @@ public class ImageCopy {
 
         }
     }
+    public static void nearestPaletteColor(String imgPath, String destinationPath, Palette p){
+        BufferedImage image = loadImage(imgPath);
+        int height = image.getHeight();
+        int width = image.getWidth();
+        BufferedImage copyImage = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int rgb = image.getRGB(x, y);
+                copyImage.setRGB(x,y, p.getPlusProche(new Color(rgb)).getRGB());
+            }
+        }
+        try {
+            ImageIO.write(copyImage, ImageCopy.getFileExtension(imgPath), new File(destinationPath));
+        }catch (IOException e){
+
+        }
+    }
     public static double distanceBetweenColor(Color c1, Color c2){
 
         return Math.sqrt(Math.pow(c1.getRed()-c2.getRed(),2)+ Math.pow(c1.getGreen()-c2.getGreen(),2)+Math.pow(c1.getBlue()-c2.getBlue(),2));
