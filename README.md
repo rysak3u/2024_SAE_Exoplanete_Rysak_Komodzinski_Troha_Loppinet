@@ -1,0 +1,1 @@
+# 2024_SAE_Exoplanete_Rysak_Komodzinski
