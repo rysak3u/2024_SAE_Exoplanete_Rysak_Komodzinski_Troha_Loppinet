@@ -118,4 +118,30 @@ public class ImageCopy {
             return null;
         }
     }
+
+    public static void replaceByNearestColor(String imgPath, String destinationPath,Color c1, Color c2){
+        BufferedImage image = loadImage(imgPath);
+        int height = image.getHeight();
+        int width = image.getWidth();
+        BufferedImage copyImage = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int rgb = image.getRGB(x, y);
+                if (distanceBetweenColor(c1, new Color(rgb)) < distanceBetweenColor(c2, new Color(rgb))) {
+                    copyImage.setRGB(x, y, c1.getRGB());
+                } else {
+                    copyImage.setRGB(x, y, c2.getRGB());
+                }
+            }
+        }
+        try {
+            ImageIO.write(copyImage, ImageCopy.getFileExtension(imgPath), new File(destinationPath));
+        }catch (IOException e){
+
+        }
+    }
+    public static double distanceBetweenColor(Color c1, Color c2){
+
+        return Math.sqrt(Math.pow(c1.getRed()-c2.getRed(),2)+ Math.pow(c1.getGreen()-c2.getGreen(),2)+Math.pow(c1.getBlue()-c2.getBlue(),2));
+    }
 }
