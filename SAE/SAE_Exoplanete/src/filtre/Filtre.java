@@ -1,5 +1,5 @@
 package filtre;
 
 public interface Filtre {
-    public int appliquerFiltre(int[][] matrice);
+    public int[][] appliquerFiltre(int[][] matrice);
 }
