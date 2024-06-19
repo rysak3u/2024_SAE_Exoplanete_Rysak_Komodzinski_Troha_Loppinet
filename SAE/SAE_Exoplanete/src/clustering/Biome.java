@@ -19,6 +19,14 @@ public class Biome implements Clustering{
      * Métrique de couleur utilisée pour calculer la distance entre deux couleurs
      */
     private NormeCouleurs norme;
+    /*
+    *  seuil en dessous duquel on considère que les centroïdes ne changent plus significativement
+    * */
+    private static final double TOLERANCE = 1e-4;
+    /*
+    *  limite le nombre maximal d'itérations pour éviter une boucle infinie
+    * */
+    private static final int MAX_ITERATIONS = 200;
 
     /**
      * Constructeur d'un objet Biome, prenant un nombre de barycentres/biomes et la métrique de couleur utilisée
@@ -92,15 +100,18 @@ public class Biome implements Clustering{
                     }
                 }
                 if (count > 0) {
-                    finito = false;
+
                     int avgR = sumR / count;
                     int avgG = sumG / count;
                     int avgB = sumB / count;
+                    if (norme.distanceCouleur(new Color(avgR,avgG,avgB).getRGB(), new Color(centroides[i]).getRGB()) > TOLERANCE) {
+                        finito = false;
+                    }
                     centroides[i] = new Color(avgR, avgG, avgB).getRGB();
                 }
             }
 
-            if(index>=200){
+            if(index>=MAX_ITERATIONS){
                 finito = true;
             }
         }
