@@ -32,7 +32,7 @@ public class Biome implements Clustering{
                 double valCentroidePlusProche = Double.MAX_VALUE;
                 for (int j = 0; j < centroides.length; j ++){
                     //System.out.println(objets[i][1]+" "+objets[i][2]+" "+objets[i][3]);
-                    double distance = norme.distanceCouleur(new Color(centroides[j]),new Color((int)objets[i][1],(int)objets[i][2],(int)objets[i][3]));
+                    double distance = norme.distanceCouleur(new Color(centroides[j]).getRGB(),new Color((int)objets[i][1],(int)objets[i][2],(int)objets[i][3]).getRGB());
                     if(distance < valCentroidePlusProche){
                         valCentroidePlusProche = distance;
                         indexCentroidePlusProche = j;
