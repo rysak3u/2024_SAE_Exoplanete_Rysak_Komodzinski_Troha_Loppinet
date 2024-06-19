@@ -1,3 +1,5 @@
+package filtre;
+
 public class FiltreMoyenne implements Filtre{
     private double[][] filtre;
     private int taille;

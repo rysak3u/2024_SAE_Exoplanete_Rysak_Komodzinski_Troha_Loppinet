@@ -1,3 +1,5 @@
+package filtre;
+
 public class FiltreGaussien implements Filtre{
 
     @Override

@@ -1,3 +1,5 @@
+package filtre;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -6,7 +8,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         try {
-            FiltreMoyenne fM = new FiltreMoyenne(10); // Filtre de taille 100x100
+            FiltreMoyenne fM = new FiltreMoyenne(10); // filtre.Filtre de taille 100x100
             File sourceFile = new File("img/Planete 3.jpg");
             BufferedImage image = ImageIO.read(sourceFile);
             int height = image.getHeight();
