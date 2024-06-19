@@ -14,7 +14,7 @@ public class OutilCouleur {
         int bleu = c & 0xFF;
         int vert = (c & 0xFF00) >> 8;
         int rouge = (c & 0xFF0000) >> 16;
-
+//        System.out.println("Rouge : " + rouge + " Vert : " + vert + " Bleu : " + bleu);
         return new int[]{rouge, vert, bleu};
     }
 }
