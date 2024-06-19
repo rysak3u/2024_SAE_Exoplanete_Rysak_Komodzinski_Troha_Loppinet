@@ -110,6 +110,7 @@ public class Biome implements Clustering{
                     centroides[i] = new Color(avgR, avgG, avgB).getRGB();
                 }
             }
+            System.out.println(index);
 
             if(index>=MAX_ITERATIONS){
                 finito = true;

@@ -1,6 +1,8 @@
 package clustering;
 
 import normecouleurs.NormeBasique;
+import normecouleurs.NormeCielab;
+import normecouleurs.NormeRedmean;
 import normecouleurs.OutilCouleur;
 
 import javax.imageio.ImageIO;
@@ -17,7 +19,7 @@ import java.util.Arrays;
 public class MainBiome {
     public static void main(String[] args) throws IOException {
         // On récupère l'image initiale dont on veut récupérer les biomes
-        File sourceFile = new File("img/Planete 3.jpg");
+        File sourceFile = new File("img/Planete 5.jpeg");
         BufferedImage image = ImageIO.read(sourceFile);
         int height = image.getHeight();
         int width = image.getWidth();
@@ -48,7 +50,7 @@ public class MainBiome {
         }
 
         // ON crée notre objet permettant d'utiliser l'algorithme de Clustering
-        Clustering biome = new Biome(7,new NormeBasique());
+        Clustering biome = new Biome(7,new NormeCielab());
 
 
         // et on fait appel à sa méthode pour nous retourner un tableau d'entiers où à chaque indice, se situe un pixel
@@ -120,7 +122,7 @@ public class MainBiome {
                     }
                 }
                 // Puis on écrit l'image du biome sur le disque dur
-                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/Planete3/biomeClusterPlanete" + i + ".png"));
+                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/Planete5/CieLab/biomeClusterPlanete" + i + ".png"));
             }
         }
 
