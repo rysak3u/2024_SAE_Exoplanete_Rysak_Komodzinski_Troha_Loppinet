@@ -2,7 +2,7 @@ package clustering;
 
 public class DbScan implements Clustering{
     @Override
-    public int[] clusteriser(int[][] objets) {
+    public int[] clusteriser(double[][] objets) {
         return new int[0];
     }
 }
