@@ -1,26 +1,16 @@
-public class FiltreGaussien implements Filtre {
+package filtre;
+
+public class FiltreMoyenne implements Filtre{
     private double[][] filtre;
     private int taille;
 
-    public FiltreGaussien(int taille, double sigma) {
-        this.taille = taille;
+    public FiltreMoyenne(int taille) {
         this.filtre = new double[taille][taille];
-        double sum = 0.0;
-        int centre = taille / 2;
+        this.taille = taille;
 
         for (int i = 0; i < taille; i++) {
             for (int j = 0; j < taille; j++) {
-                int x = i - centre;
-                int y = j - centre;
-                this.filtre[i][j] = Math.exp(-(x * x + y * y) / (2 * sigma * sigma)) / (2 * Math.PI * sigma * sigma);
-                sum += this.filtre[i][j];
-            }
-        }
-
-        // Normalisation : pour que la somme de toutes les valeurs du filtre est égale à 1
-        for (int i = 0; i < taille; i++) {
-            for (int j = 0; j < taille; j++) {
-                this.filtre[i][j] /= sum;
+                this.filtre[i][j] = 1.0 / (taille * taille);
             }
         }
     }
@@ -58,5 +48,4 @@ public class FiltreGaussien implements Filtre {
 
         return resultat;
     }
-
 }
