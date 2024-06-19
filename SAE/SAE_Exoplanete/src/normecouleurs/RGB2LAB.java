@@ -1,7 +1,8 @@
 package normecouleurs;
 
-public class CieLab{
+//License from project: Apache License
 
+public class RGB2LAB {
     public static int[] rgb2lab(int R, int G, int B) {
         // http://www.brucelindbloom.com
 
@@ -70,3 +71,5 @@ public class CieLab{
         return lab;
     }
 }
+
+
