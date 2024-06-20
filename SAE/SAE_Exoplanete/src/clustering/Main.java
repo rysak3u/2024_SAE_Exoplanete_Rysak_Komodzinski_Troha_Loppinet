@@ -16,7 +16,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
         // On récupère l'image initiale dont on veut récupérer les biomes
-        File sourceFile = new File("img/Planete 1.jpg");
+        File sourceFile = new File("img/earthmap1_med.jpg");
         BufferedImage image = ImageIO.read(sourceFile);
         int height = image.getHeight();
         int width = image.getWidth();
@@ -129,7 +129,7 @@ public class Main {
                     }
                 }
                 // Puis on écrit l'image du biome sur le disque dur
-                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/Planete1/RedMean/biomeClusterPlanete" + i + ".png"));
+                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/earthmap2/biomeClusterPlanete" + i + ".png"));
 
                 // On transfère les coordonnées dans pixelsBiome
                 pixelsBiome = new double[coordonneesPixels.size()][2];
@@ -165,7 +165,7 @@ public class Main {
                     }
                 }
                 // Puis on écrit l'image de l'écosystème sur le disque dur
-                ImageIO.write(ecosystemeImage, getFileExtension(sourceFile.getPath()), new File("img/Ecosystemes/Planete1/RedMean/EcosystemesClusterPlanete" + i + ".png"));
+                ImageIO.write(ecosystemeImage, getFileExtension(sourceFile.getPath()), new File("img/Ecosystemes/earthmap2/EcosystemesClusterPlanete" + i + ".png"));
             }
         }
     }
