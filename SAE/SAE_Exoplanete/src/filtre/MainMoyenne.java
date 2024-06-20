@@ -29,7 +29,7 @@ public class MainMoyenne {
                 }
             }
 
-            ImageIO.write(copyImage, getFileExtension(sourceFile.getPath()), new File("img/pFlou.jpg"));
+            ImageIO.write(copyImage, getFileExtension(sourceFile.getPath()), new File("img/pFlouMoyenne.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
