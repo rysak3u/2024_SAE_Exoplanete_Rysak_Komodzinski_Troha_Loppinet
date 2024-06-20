@@ -21,7 +21,7 @@ import java.util.Arrays;
  */
 public class MainBiome {
     public static void main(String[] args) throws IOException {
-        File sourceFile = new File("img/Planete 1.jpg");
+        File sourceFile = new File("img/Planete 3.jpg");
         BufferedImage imageSource = ImageIO.read(sourceFile);
         int height = imageSource.getHeight();
         int width = imageSource.getWidth();
