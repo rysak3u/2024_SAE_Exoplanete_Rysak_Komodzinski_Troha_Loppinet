@@ -26,7 +26,7 @@ public class Biome implements Clustering{
     /*
     *  limite le nombre maximal d'itérations pour éviter une boucle infinie
     * */
-    private static final int MAX_ITERATIONS = 400;
+    private static final int MAX_ITERATIONS = 100;
 
     /**
      * Constructeur d'un objet Biome, prenant un nombre de barycentres/biomes et la métrique de couleur utilisée

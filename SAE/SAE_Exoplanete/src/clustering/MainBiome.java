@@ -1,5 +1,8 @@
 package clustering;
 
+import filtre.Filtre;
+import filtre.FiltreGaussien;
+import filtre.FiltreMoyenne;
 import normecouleurs.NormeBasique;
 import normecouleurs.NormeCielab;
 import normecouleurs.NormeRedmean;
@@ -18,11 +21,34 @@ import java.util.Arrays;
  */
 public class MainBiome {
     public static void main(String[] args) throws IOException {
-        // On récupère l'image initiale dont on veut récupérer les biomes
-        File sourceFile = new File("img/Planete 3.jpg");
-        BufferedImage image = ImageIO.read(sourceFile);
-        int height = image.getHeight();
-        int width = image.getWidth();
+        File sourceFile = new File("img/Planete 1.jpg");
+        BufferedImage imageSource = ImageIO.read(sourceFile);
+        int height = imageSource.getHeight();
+        int width = imageSource.getWidth();
+        /*
+        * On applique un flou gaussien à l'image
+        * */
+
+        //on recupére la matrice des couleurs de chaque pixel de l'image
+        int[][] matrice = new int[width][height];
+
+        for(int x = 0 ; x < width ; x++){
+            for(int y = 0 ; y<height ; y++){
+                matrice[x][y]=imageSource.getRGB(x,y);
+            }
+        }
+        //on lui applique le Filtre Gaussien
+        Filtre f = new FiltreGaussien(9,1.5);
+        matrice = f.appliquerFiltre(matrice);
+
+        //on créer une nouvelle image en appliquant la matrice des couleurs renvoyé par le filtre gaussien
+        BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_3BYTE_BGR);
+        for(int x = 0 ; x < width ; x++){
+            for(int y = 0 ; y<height ; y++){
+                image.setRGB(x,y,matrice[x][y]);
+            }
+        }
+
 
         // On aura un tableau qui ressemble à
         /*
@@ -50,7 +76,7 @@ public class MainBiome {
         }
 
         // ON crée notre objet permettant d'utiliser l'algorithme de Clustering
-        Clustering biome = new Biome(20,new NormeCielab());
+        Clustering biome = new Biome(7,new NormeCielab());
 
 
         // et on fait appel à sa méthode pour nous retourner un tableau d'entiers où à chaque indice, se situe un pixel
@@ -65,7 +91,7 @@ public class MainBiome {
         // et pour chaque biome (indice du tableau palettes), on fait la moyenne de tous les
         // pixels qui appartiennent à ce biome, pour avoir la couleur du biome et pouvoir l'afficher
         // sur l'image lors de la réécriture de la copie.
-        int[] palettes = new int[20];
+        int[] palettes = new int[7];
         for(int i =0;i<palettes.length;i++){
             int sumR = 0, sumG = 0, sumB = 0, count = 0;
             for(int j = 0;j<groupes.length;j++){
@@ -114,6 +140,7 @@ public class MainBiome {
                 int indexPixel=0; // indice du pixel dans le tableau de pixels renvoyés par l'algo
                 // parcourt des pixels de l'image copiée au fond clair
                 for(int j = 0; j < width; j++){
+
                     for(int k = 0; k < height; k++){
                         if(groupes[indexPixel] == i){
                             biomeImage.setRGB(j, k, palettes[i]);
@@ -122,10 +149,9 @@ public class MainBiome {
                     }
                 }
                 // Puis on écrit l'image du biome sur le disque dur
-                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/Planete3/20Clusters/CieLab/biomeClusterPlanete" + i + ".png"));
+                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/Planete3/FiltreGaussien/CieLab/biomeClusterPlanete" + i + ".png"));
             }
         }
-
     }
 
     /**
