@@ -76,7 +76,7 @@ public class MainBiome {
         }
 
         // ON crée notre objet permettant d'utiliser l'algorithme de Clustering
-        Clustering biome = new Biome(7,new NormeCielab());
+        Clustering biome = new Biome(20,new NormeCielab());
 
 
         // et on fait appel à sa méthode pour nous retourner un tableau d'entiers où à chaque indice, se situe un pixel
@@ -91,7 +91,7 @@ public class MainBiome {
         // et pour chaque biome (indice du tableau palettes), on fait la moyenne de tous les
         // pixels qui appartiennent à ce biome, pour avoir la couleur du biome et pouvoir l'afficher
         // sur l'image lors de la réécriture de la copie.
-        int[] palettes = new int[7];
+        int[] palettes = new int[20];
         for(int i =0;i<palettes.length;i++){
             int sumR = 0, sumG = 0, sumB = 0, count = 0;
             for(int j = 0;j<groupes.length;j++){
@@ -149,7 +149,7 @@ public class MainBiome {
                     }
                 }
                 // Puis on écrit l'image du biome sur le disque dur
-                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/Planete3/FiltreGaussien/CieLab/biomeClusterPlanete" + i + ".png"));
+                ImageIO.write(biomeImage, getFileExtension(sourceFile.getPath()), new File("img/Biomes/Planete3/FiltreGaussien/20Clusters/CieLab/biomeClusterPlanete" + i + ".png"));
             }
         }
     }
